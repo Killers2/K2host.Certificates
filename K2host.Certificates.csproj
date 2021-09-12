@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BouncyCastle.NetCore" Version="1.8.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.8.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Asn1Encoding\Universal\" />
+    <Folder Include="Asn1Encoding\Utils\CLRExtensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\K2host.Core\K2host.Core.csproj" />
+    <ProjectReference Include="..\K2host.Data\K2host.Data.csproj" />
+  </ItemGroup>
+
+</Project>
