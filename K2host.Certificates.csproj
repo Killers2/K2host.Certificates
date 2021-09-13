@@ -2,6 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company>K2host.co.uk</Company>
+    <Authors>Tony N. Hyde</Authors>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/Killers2/K2host.Certificates</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Killers2/K2host.Certificates</RepositoryUrl>
+    <PackageIcon>Icon128.png</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryType>GIT</RepositoryType>
+    <PackageTags>K2host, Certificates, CA, Certificate Authority, SSL, OCSP</PackageTags>
+    <Description>A X509 Certificate Library to help create CA service and certificates.</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -23,6 +35,17 @@
   <ItemGroup>
     <ProjectReference Include="..\K2host.Core\K2host.Core.csproj" />
     <ProjectReference Include="..\K2host.Data\K2host.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\K2host.Pictures\Icon128.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
