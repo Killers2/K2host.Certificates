@@ -371,6 +371,7 @@ namespace K2host.Certificates.Extentions
         public static List<string> GetAlternativeSubjectNames(this X509Certificate2 cert)
         {
             List<string> result = new();
+
             string subjectAlternativeName = cert.Extensions.Cast<System.Security.Cryptography.X509Certificates.X509Extension>()
                                                 .Where(n => n.Oid.Value == "2.5.29.17")
                                                 .Select(n => new AsnEncodedData(n.Oid, n.RawData))
@@ -379,15 +380,18 @@ namespace K2host.Certificates.Extentions
 
             if (subjectAlternativeName != null)
             {
+               
                 string[] alternativeNames = subjectAlternativeName.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+               
                 foreach (string alternativeName in alternativeNames)
                 {
+
                     GroupCollection groups = Regex.Match(alternativeName, @"^(.*)=(.*)").Groups; // @"^DNS Name=(.*)").Groups;
                     if (groups.Count > 0 && !string.IsNullOrEmpty(groups[2].Value))
-                    {
                         result.Add(groups[2].Value);
-                    }
+
                 }
+
             }
 
             return result;
