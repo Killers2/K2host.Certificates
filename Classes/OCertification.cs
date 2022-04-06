@@ -9,6 +9,7 @@ using System;
 using System.Data;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using System.Data.SqlTypes;
 
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Asn1.X509;
@@ -17,7 +18,9 @@ using K2host.Data.Attributes;
 using K2host.Data.Classes;
 using K2host.Certificates.Interfaces;
 using K2host.Data.Enums;
-using System.Data.SqlTypes;
+
+using MySql.Data.MySqlClient;
+using Oracle.ManagedDataAccess.Client;
 
 namespace K2host.Certificates.Classes
 {
@@ -28,37 +31,37 @@ namespace K2host.Certificates.Classes
         /// <summary>
         /// Used to determin this cert as a certification authority
         /// </summary>
-        [ODataType(SqlDbType.Bit)]
+        [ODataType(SqlDbType.Bit, MySqlDbTypeExt.Boolean, OracleDbType.Boolean)]
         public bool IsCertificationAuthority { get; set; }
 
         /// <summary>
         /// The encryption key size
         /// </summary>
-        [ODataType(SqlDbType.Int)]
+        [ODataType(SqlDbType.Int, MySqlDbType.Int32, OracleDbType.Int32)]
         public int KeySize { get; set; }
 
         /// <summary>
         /// The subject name
         /// </summary>
-        [ODataType(SqlDbType.NVarChar, 1024)]
+        [ODataType(SqlDbType.NVarChar, MySqlDbType.VarString, OracleDbType.Varchar2, 1024)]
         public string SubjectName { get; set; }
 
         /// <summary>
         /// The friendly name
         /// </summary>
-        [ODataType(SqlDbType.NVarChar, 512)]
+        [ODataType(SqlDbType.NVarChar, MySqlDbType.VarString, OracleDbType.Varchar2, 512)]
         public string FriendlyName { get; set; }
 
         /// <summary>
         /// The name of the algorithm used
         /// </summary>
-        [ODataType(SqlDbType.NVarChar, 255)]
+        [ODataType(SqlDbType.NVarChar, MySqlDbType.VarString, OracleDbType.Varchar2, 255)]
         public string Algorithm { get; set; }
 
         /// <summary>
         /// The expiry date and time.
         /// </summary>
-        [ODataType(SqlDbType.DateTime)]
+        [ODataType(SqlDbType.DateTime, MySqlDbType.DateTime, OracleDbType.TimeStamp)]
         public DateTime ExpiresIn { get; set; }
 
         /// <summary>
@@ -76,7 +79,7 @@ namespace K2host.Certificates.Classes
         /// <summary>
         /// The name of the issuser
         /// </summary>
-        [ODataType(SqlDbType.NVarChar, 1024)]
+        [ODataType(SqlDbType.NVarChar, MySqlDbType.VarString, OracleDbType.Varchar2, 1024)]
         public string IssuerName { get; set; }
 
         /// <summary>
@@ -88,7 +91,7 @@ namespace K2host.Certificates.Classes
         /// <summary>
         /// Optional: The password thats going to used
         /// </summary>
-        [ODataType(SqlDbType.NVarChar, 512)]
+        [ODataType(SqlDbType.NVarChar, MySqlDbType.VarString, OracleDbType.Varchar2, 512)]
         public string Password { get; set; }
 
         /// <summary>
@@ -112,50 +115,50 @@ namespace K2host.Certificates.Classes
         /// <summary>
         /// Optional: The ocsp url on this certificate.
         /// </summary>
-        [ODataType(SqlDbType.NVarChar, 1024)]
+        [ODataType(SqlDbType.NVarChar, MySqlDbType.VarString, OracleDbType.Varchar2, 1024)]
         public string OcspUrl { get; set; }
 
         /// <summary>
         /// Optional: The aia url on this certificate.
         /// </summary>
-        [ODataType(SqlDbType.NVarChar, 1024)]
+        [ODataType(SqlDbType.NVarChar, MySqlDbType.VarString, OracleDbType.Varchar2, 1024)]
         public string AiaUrl { get; set; }
 
         /// <summary>
         /// The serial number of the cert after being created.
         /// </summary>
-        [ODataType(SqlDbType.NVarChar, 255)]
+        [ODataType(SqlDbType.NVarChar, MySqlDbType.VarString, OracleDbType.Varchar2, 255)]
         public string SerialNumber { get; set; }
 
         /// <summary>
         /// The revocate state
         /// </summary>
-        [ODataType(SqlDbType.Bit)]
+        [ODataType(SqlDbType.Bit, MySqlDbTypeExt.Boolean, OracleDbType.Boolean)]
         public bool Revocated { get; set; }
 
         /// <summary>
         /// The date of when it was revocated
         /// </summary>
-        [ODataType(SqlDbType.DateTime)]
+        [ODataType(SqlDbType.DateTime, MySqlDbType.DateTime, OracleDbType.TimeStamp)]
         public DateTime RevocationDate { get; set; }
 
         /// <summary>
         /// The pem file that holds the private key.
         /// </summary>
-        [ODataType(SqlDbType.NVarChar, 2048)]
+        [ODataType(SqlDbType.NVarChar, MySqlDbType.VarString, OracleDbType.Varchar2, 2048)]
         public string PemPrivateKey { get; set; }
 
         /// <summary>
         /// The pem file that holds the public key.
         /// </summary>
-        [ODataType(SqlDbType.NVarChar, 2048)]
+        [ODataType(SqlDbType.NVarChar, MySqlDbType.VarString, OracleDbType.Varchar2, 2048)]
         public string PemPublicKey { get; set; }
 
         /// <summary>
         /// The constructor
         /// </summary>
-        public OCertification(string connectionString) : 
-            base(connectionString)
+        public OCertification() : 
+            base()
         {
             IsCertificationAuthority = false;
             KeySize                 = 0;

@@ -14,6 +14,7 @@
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>K2host, Certificates, CA, Certificate Authority, SSL, OCSP</PackageTags>
     <Description>A X509 Certificate Library to help create CA service and certificates.</Description>
+    <Version>1.0.4</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
